@@ -1,11 +1,18 @@
 import React from "react";
 import NavBar from "./components/navBar";
+import { Route, Switch } from "react-router-dom";
+import CardStudent from "./components/cardStudent";
+import EditCardStudent from "./components/editCardStudent";
 
 function App() {
     return (
         <div>
             <NavBar />
             <h1>App</h1>
+            <Switch>
+                <Route path="/edit" component={EditCardStudent} />
+                <Route path="/" component={CardStudent} />
+            </Switch>
         </div>
     );
 }
