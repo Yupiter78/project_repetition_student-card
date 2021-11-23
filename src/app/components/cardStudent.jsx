@@ -10,7 +10,10 @@ const CardStudent = () => {
     const [state, setState] = useState(initialState);
     const handleChange = ({ target }) => {
         console.log(target.id);
-        setState((prevState) => ({ ...prevState, [target.id]: target.value }));
+        setState((prevState) => ({
+            ...prevState,
+            [target.name]: target.value
+        }));
     };
     return (
         <form action="">
@@ -19,6 +22,7 @@ const CardStudent = () => {
                 <input
                     type="text"
                     id="name"
+                    name="name"
                     value={state.name}
                     onChange={handleChange}
                 />
@@ -28,6 +32,7 @@ const CardStudent = () => {
                 <input
                     type="text"
                     id="surname"
+                    name="surname"
                     value={state.surname}
                     onChange={handleChange}
                 />
@@ -37,6 +42,7 @@ const CardStudent = () => {
                 <input
                     type="text"
                     id="yearOfBirth"
+                    name="yearOfBirth"
                     value={state.yearOfBirth}
                     onChange={handleChange}
                 />
@@ -46,6 +52,7 @@ const CardStudent = () => {
                 <input
                     type="text"
                     id="portfolio"
+                    name="portfolio"
                     value={state.portfolio}
                     onChange={handleChange}
                 />
