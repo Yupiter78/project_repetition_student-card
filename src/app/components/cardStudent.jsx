@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TextField from "./textField";
 
 const CardStudent = () => {
     const initialState = {
@@ -7,56 +8,44 @@ const CardStudent = () => {
         yearOfBirth: "",
         portfolio: ""
     };
-    const [state, setState] = useState(initialState);
+    const [data, setData] = useState(initialState);
     const handleChange = ({ target }) => {
         console.log(target.id);
-        setState((prevState) => ({
+        setData((prevState) => ({
             ...prevState,
             [target.name]: target.value
         }));
     };
     return (
         <form action="">
-            <div>
-                <label htmlFor="name">Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={state.name}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="surname">Surname</label>
-                <input
-                    type="text"
-                    id="surname"
-                    name="surname"
-                    value={state.surname}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="yearOfBirth">Year of birth</label>
-                <input
-                    type="text"
-                    id="yearOfBirth"
-                    name="yearOfBirth"
-                    value={state.yearOfBirth}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="portfolio">Portfolio</label>
-                <input
-                    type="text"
-                    id="portfolio"
-                    name="portfolio"
-                    value={state.portfolio}
-                    onChange={handleChange}
-                />
-            </div>
+            <TextField
+                label="Name"
+                type="text"
+                name="name"
+                value={data.name}
+                onChange={handleChange}
+            />
+            <TextField
+                label="Surname"
+                type="text"
+                name="surname"
+                value={data.surname}
+                onChange={handleChange}
+            />
+            <TextField
+                label="Year of birth"
+                type="text"
+                name="yearOfBirth"
+                value={data.yearOfBirth}
+                onChange={handleChange}
+            />
+            <TextField
+                label="Portfolio"
+                type="text"
+                name="portfolio"
+                value={data.portfolio}
+                onChange={handleChange}
+            />
         </form>
     );
 };
