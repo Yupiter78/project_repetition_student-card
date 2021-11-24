@@ -78,7 +78,9 @@ const CardStudent = () => {
                 onChange={handleChange}
                 error={errors.portfolio}
             />
-            <button className="btn btn-primary mt-4">Submit</button>
+            <button className="btn btn-primary mt-4" disabled={true}>
+                Submit
+            </button>
         </form>
     );
 };
