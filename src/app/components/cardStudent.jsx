@@ -42,6 +42,8 @@ const CardStudent = () => {
         console.log("Object.keys(errors):", Object.keys(errors));
         return Object.keys(errors).length === 0;
     };
+
+    const isValid = Object.keys(errors).length === 0;
     const handleSubmit = (event) => {
         event.preventDefault();
         const isValid = validate();
@@ -78,7 +80,7 @@ const CardStudent = () => {
                 onChange={handleChange}
                 error={errors.portfolio}
             />
-            <button className="btn btn-primary mt-4" disabled={true}>
+            <button className="btn btn-primary mt-4" disabled={!isValid}>
                 Submit
             </button>
         </form>
