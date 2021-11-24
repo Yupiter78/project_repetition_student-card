@@ -17,6 +17,13 @@ export function validator(data, config) {
                 if (!numberRegExp.test(data)) return config.message;
                 break;
             }
+            case "isValidDate": {
+                const dateYear = new Date().getFullYear();
+                if (data >= dateYear && data <= dateYear - 100) {
+                    return config.message;
+                }
+                break;
+            }
             default:
                 break;
         }
