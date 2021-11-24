@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "./textField";
 
 const CardStudent = () => {
@@ -9,6 +9,7 @@ const CardStudent = () => {
         portfolio: ""
     };
     const [data, setData] = useState(initialState);
+    const [, setErrors] = useState();
     const handleChange = ({ target }) => {
         console.log(target.id);
         setData((prevState) => ({
@@ -16,36 +17,52 @@ const CardStudent = () => {
             [target.name]: target.value
         }));
     };
+    useEffect(() => {
+        validate();
+    }, [data]);
+    const validate = () => {
+        const errors = {};
+        for (const fieldName in data) {
+            if (data[fieldName].trim() === "") {
+                errors[fieldName] = `${fieldName} isRequired`;
+            }
+        }
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const isValid = validate();
+        if (!isValid) return;
+        console.log(data);
+    };
     return (
-        <form action="">
+        <form onSubmit={handleSubmit}>
             <TextField
                 label="Name"
-                type="text"
                 name="name"
                 value={data.name}
                 onChange={handleChange}
             />
             <TextField
                 label="Surname"
-                type="text"
                 name="surname"
                 value={data.surname}
                 onChange={handleChange}
             />
             <TextField
                 label="Year of birth"
-                type="text"
                 name="yearOfBirth"
                 value={data.yearOfBirth}
                 onChange={handleChange}
             />
             <TextField
                 label="Portfolio"
-                type="text"
                 name="portfolio"
                 value={data.portfolio}
                 onChange={handleChange}
             />
+            <button className="btn btn-primary mt-4">Submit</button>
         </form>
     );
 };
