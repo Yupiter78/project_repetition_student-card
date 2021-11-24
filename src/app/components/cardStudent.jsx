@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TextField from "./textField";
+import { validator } from "../utils/validator";
 
 const CardStudent = () => {
     const initialState = {
@@ -17,17 +18,21 @@ const CardStudent = () => {
             [target.name]: target.value
         }));
     };
+
+    const validatorConfig = {
+        name: { isRequired: { message: "Email isRequired" } },
+        surname: { isRequired: { message: "Surname isRequired" } },
+        yearOfBirth: { isRequired: { message: "Year of birth isRequired" } },
+        portfolio: { isRequired: { message: "Portfolio isRequired" } }
+    };
+
     useEffect(() => {
         validate();
     }, [data]);
     const validate = () => {
-        const errors = {};
-        for (const fieldName in data) {
-            if (data[fieldName].trim() === "") {
-                errors[fieldName] = `${fieldName} isRequired`;
-            }
-        }
+        const errors = validator(data, validatorConfig);
         setErrors(errors);
+        console.log("Object.keys(errors):", Object.keys(errors));
         return Object.keys(errors).length === 0;
     };
     const handleSubmit = (event) => {
