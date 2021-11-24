@@ -6,6 +6,12 @@ export function validator(data, config) {
             case "isRequired":
                 if (data.trim() === "") return config.message;
                 break;
+            case "isURL": {
+                const urlRegExp =
+                    /^(https?:\/\/)?([\w.]+)\.([a-z]{2,6}\.?)(\/[\w.]*)*\/?$/g;
+                if (!urlRegExp.test(data)) return config.message;
+                break;
+            }
             default:
                 break;
         }
