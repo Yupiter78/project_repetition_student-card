@@ -12,6 +12,11 @@ export function validator(data, config) {
                 if (!urlRegExp.test(data)) return config.message;
                 break;
             }
+            case "isNumber": {
+                const numberRegExp = /^[0-9]+$/g;
+                if (!numberRegExp.test(data)) return config.message;
+                break;
+            }
             default:
                 break;
         }
