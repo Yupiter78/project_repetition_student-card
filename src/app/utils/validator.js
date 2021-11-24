@@ -2,31 +2,31 @@ export function validator(data, config) {
     const errors = {};
 
     function validate(validateMethod, data, config) {
+        let statusValidate;
         switch (validateMethod) {
             case "isRequired":
-                if (data.trim() === "") return config.message;
+                statusValidate = data.trim() === "";
                 break;
             case "isURL": {
                 const urlRegExp =
                     /^(https?:\/\/)?(\w\.+)\.([a-z]{2,6}\.?)(\/\w\.*)*\/?$/g;
-                if (!urlRegExp.test(data)) return config.message;
+                statusValidate = !urlRegExp.test(data);
                 break;
             }
             case "isNumber": {
                 const numberRegExp = /^[0-9]+$/g;
-                if (!numberRegExp.test(data)) return config.message;
+                statusValidate = !numberRegExp.test(data);
                 break;
             }
             case "isValidDate": {
                 const dateYear = new Date().getFullYear();
-                if (data >= dateYear && data <= dateYear - 100) {
-                    return config.message;
-                }
+                statusValidate = data >= dateYear && data <= dateYear - 100;
                 break;
             }
             default:
                 break;
         }
+        if (statusValidate) return config.message;
     }
 
     for (const fieldName in data) {
