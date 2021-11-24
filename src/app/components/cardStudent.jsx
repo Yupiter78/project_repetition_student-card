@@ -9,7 +9,7 @@ const CardStudent = () => {
         portfolio: ""
     };
     const [data, setData] = useState(initialState);
-    const [, setErrors] = useState();
+    const [errors, setErrors] = useState({});
     const handleChange = ({ target }) => {
         console.log(target.id);
         setData((prevState) => ({
@@ -43,24 +43,28 @@ const CardStudent = () => {
                 name="name"
                 value={data.name}
                 onChange={handleChange}
+                error={errors.name}
             />
             <TextField
                 label="Surname"
                 name="surname"
                 value={data.surname}
                 onChange={handleChange}
+                error={errors.surname}
             />
             <TextField
                 label="Year of birth"
                 name="yearOfBirth"
                 value={data.yearOfBirth}
                 onChange={handleChange}
+                error={errors.yearOfBirth}
             />
             <TextField
                 label="Portfolio"
                 name="portfolio"
                 value={data.portfolio}
                 onChange={handleChange}
+                error={errors.portfolio}
             />
             <button className="btn btn-primary mt-4">Submit</button>
         </form>
