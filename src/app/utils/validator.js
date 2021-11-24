@@ -8,7 +8,7 @@ export function validator(data, config) {
                 break;
             case "isURL": {
                 const urlRegExp =
-                    /^(https?:\/\/)?([\w.]+)\.([a-z]{2,6}\.?)(\/[\w.]*)*\/?$/g;
+                    /^(https?:\/\/)?(\w\.+)\.([a-z]{2,6}\.?)(\/\w\.*)*\/?$/g;
                 if (!urlRegExp.test(data)) return config.message;
                 break;
             }

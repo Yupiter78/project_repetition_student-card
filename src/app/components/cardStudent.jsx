@@ -22,8 +22,15 @@ const CardStudent = () => {
     const validatorConfig = {
         name: { isRequired: { message: "Email isRequired" } },
         surname: { isRequired: { message: "Surname isRequired" } },
-        yearOfBirth: { isRequired: { message: "Year of birth isRequired" } },
-        portfolio: { isRequired: { message: "Portfolio isRequired" } }
+        yearOfBirth: {
+            isRequired: { message: "Year of birth isRequired" },
+            isNumber: { message: "Enter only number" },
+            isValidDate: { message: "Enter the correct date" }
+        },
+        portfolio: {
+            isRequired: { message: "Portfolio isRequired" },
+            isURL: { message: "Portfolio field must be a link" }
+        }
     };
 
     useEffect(() => {
