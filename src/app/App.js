@@ -8,7 +8,6 @@ function App() {
     return (
         <div>
             <NavBar />
-            <h1>App</h1>
             <Switch>
                 <Route path="/edit" component={EditCardStudent} />
                 <Route path="/" component={CardStudent} />

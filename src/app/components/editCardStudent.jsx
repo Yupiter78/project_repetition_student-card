@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import TextField from "./textField";
 import { validator } from "../utils/validator";
+import { useHistory } from "react-router-dom";
 
 const EditCardStudent = () => {
+    const history = useHistory();
+    const saveData = JSON.parse(localStorage.getItem("student"));
     const initialState = {
         name: "",
         surname: "",
         yearOfBirth: "",
         portfolio: ""
     };
-    const [data, setData] = useState(initialState);
+    const [data, setData] = useState(saveData || initialState);
     const [errors, setErrors] = useState({});
     const handleChange = ({ target }) => {
         console.log(target.id);
@@ -49,46 +52,57 @@ const EditCardStudent = () => {
         const isValid = validate();
         if (!isValid) return;
         localStorage.setItem("student", JSON.stringify(data));
+        history.push("/");
         console.log(data);
     };
+    const handleClear = () => {
+        localStorage.clear();
+        history.push("/");
+    };
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
-                label="Name"
-                type="text"
-                name="name"
-                value={data.name}
-                onChange={handleChange}
-                error={errors.name}
-            />
-            <TextField
-                label="Surname"
-                type="text"
-                name="surname"
-                value={data.surname}
-                onChange={handleChange}
-                error={errors.surname}
-            />
-            <TextField
-                label="Year of birth"
-                type="text"
-                name="yearOfBirth"
-                value={data.yearOfBirth}
-                onChange={handleChange}
-                error={errors.yearOfBirth}
-            />
-            <TextField
-                label="Portfolio"
-                type="text"
-                name="portfolio"
-                value={data.portfolio}
-                onChange={handleChange}
-                error={errors.portfolio}
-            />
-            <button className="btn btn-primary mt-4" disabled={!isValid}>
-                Save
+        <div>
+            <h1>Edit card student</h1>
+            <form onSubmit={handleSubmit}>
+                <TextField
+                    label="Name"
+                    type="text"
+                    name="name"
+                    value={data.name}
+                    onChange={handleChange}
+                    error={errors.name}
+                />
+                <TextField
+                    label="Surname"
+                    type="text"
+                    name="surname"
+                    value={data.surname}
+                    onChange={handleChange}
+                    error={errors.surname}
+                />
+                <TextField
+                    label="Year of birth"
+                    type="text"
+                    name="yearOfBirth"
+                    value={data.yearOfBirth}
+                    onChange={handleChange}
+                    error={errors.yearOfBirth}
+                />
+                <TextField
+                    label="Portfolio"
+                    type="text"
+                    name="portfolio"
+                    value={data.portfolio}
+                    onChange={handleChange}
+                    error={errors.portfolio}
+                />
+                <button className="btn btn-primary mt-4" disabled={!isValid}>
+                    Save
+                </button>
+            </form>
+            <button className="btn btn-primary mt-4" onClick={handleClear}>
+                Clear
             </button>
-        </form>
+        </div>
     );
 };
 

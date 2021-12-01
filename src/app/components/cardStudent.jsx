@@ -55,40 +55,65 @@ const CardStudent = () => {
         history.push("/edit");
         console.log(data);
     };
+
+    const handleCreate = () => {
+        history.push("/edit");
+    };
+
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
-                label="Name"
-                name="name"
-                value={data.name}
-                onChange={handleChange}
-                error={errors.name}
-            />
-            <TextField
-                label="Surname"
-                name="surname"
-                value={data.surname}
-                onChange={handleChange}
-                error={errors.surname}
-            />
-            <TextField
-                label="Year of birth"
-                name="yearOfBirth"
-                value={data.yearOfBirth}
-                onChange={handleChange}
-                error={errors.yearOfBirth}
-            />
-            <TextField
-                label="Portfolio"
-                name="portfolio"
-                value={data.portfolio}
-                onChange={handleChange}
-                error={errors.portfolio}
-            />
-            <button className="btn btn-primary mt-4" disabled={!isValid}>
-                Edit
-            </button>
-        </form>
+        <>
+            {saveData ? (
+                <div>
+                    <h1>Card student</h1>
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            label="Name"
+                            name="name"
+                            value={data.name}
+                            onChange={handleChange}
+                            error={errors.name}
+                        />
+                        <TextField
+                            label="Surname"
+                            name="surname"
+                            value={data.surname}
+                            onChange={handleChange}
+                            error={errors.surname}
+                        />
+                        <TextField
+                            label="Year of birth"
+                            name="yearOfBirth"
+                            value={data.yearOfBirth}
+                            onChange={handleChange}
+                            error={errors.yearOfBirth}
+                        />
+                        <TextField
+                            label="Portfolio"
+                            name="portfolio"
+                            value={data.portfolio}
+                            onChange={handleChange}
+                            error={errors.portfolio}
+                        />
+                        <button
+                            className="btn btn-primary mt-4"
+                            disabled={!isValid}
+                        >
+                            Edit
+                        </button>
+                    </form>
+                </div>
+            ) : (
+                <div>
+                    <h1>Create card student</h1>
+                    <button
+                        className="btn btn-primary mt-4"
+                        onClick={handleCreate}
+                    >
+                        Create
+                    </button>
+                </div>
+            )}
+        </>
     );
 };
 
