@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import TextField from "./textField";
 import { validator } from "../utils/validator";
+import { useHistory } from "react-router-dom";
 
 const CardStudent = () => {
+    const history = useHistory();
+    console.log(history);
     const initialState = {
         name: "",
         surname: "",
         yearOfBirth: "",
         portfolio: ""
     };
-    const [data, setData] = useState(initialState);
+    const saveData = JSON.parse(localStorage.getItem("student"));
+    const [data, setData] = useState(saveData || initialState);
     const [errors, setErrors] = useState({});
     const handleChange = ({ target }) => {
         console.log(target.id);
@@ -48,6 +52,7 @@ const CardStudent = () => {
         event.preventDefault();
         const isValid = validate();
         if (!isValid) return;
+        history.push("/edit");
         console.log(data);
     };
     return (
@@ -81,7 +86,7 @@ const CardStudent = () => {
                 error={errors.portfolio}
             />
             <button className="btn btn-primary mt-4" disabled={!isValid}>
-                Submit
+                Edit
             </button>
         </form>
     );
