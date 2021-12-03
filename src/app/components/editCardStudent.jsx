@@ -60,48 +60,58 @@ const EditCardStudent = () => {
         history.push("/");
     };
     return (
-        <div>
-            <h1>Edit card student</h1>
-            <form onSubmit={handleSubmit}>
-                <TextField
-                    label="Name"
-                    type="text"
-                    name="name"
-                    value={data.name}
-                    onChange={handleChange}
-                    error={errors.name}
-                />
-                <TextField
-                    label="Surname"
-                    type="text"
-                    name="surname"
-                    value={data.surname}
-                    onChange={handleChange}
-                    error={errors.surname}
-                />
-                <TextField
-                    label="Year of birth"
-                    type="text"
-                    name="yearOfBirth"
-                    value={data.yearOfBirth}
-                    onChange={handleChange}
-                    error={errors.yearOfBirth}
-                />
-                <TextField
-                    label="Portfolio"
-                    type="text"
-                    name="portfolio"
-                    value={data.portfolio}
-                    onChange={handleChange}
-                    error={errors.portfolio}
-                />
-                <button className="btn btn-primary mt-4" disabled={!isValid}>
-                    Save
-                </button>
-            </form>
-            <button className="btn btn-primary mt-4" onClick={handleClear}>
-                Clear
-            </button>
+        <div className="container mt-5">
+            <div className="row">
+                <div className="col-md-6 offset-md-3">
+                    <h3>Edit card student</h3>
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            label="Name"
+                            type="text"
+                            name="name"
+                            value={data.name}
+                            onChange={handleChange}
+                            error={errors.name}
+                        />
+                        <TextField
+                            label="Surname"
+                            type="text"
+                            name="surname"
+                            value={data.surname}
+                            onChange={handleChange}
+                            error={errors.surname}
+                        />
+                        <TextField
+                            label="Year of birth"
+                            type="text"
+                            name="yearOfBirth"
+                            value={data.yearOfBirth}
+                            onChange={handleChange}
+                            error={errors.yearOfBirth}
+                        />
+                        <TextField
+                            label="Portfolio"
+                            type="text"
+                            name="portfolio"
+                            value={data.portfolio}
+                            onChange={handleChange}
+                            error={errors.portfolio}
+                        />
+                        <button
+                            className="btn btn-primary mt-4"
+                            disabled={!isValid}
+                        >
+                            Save
+                        </button>
+                    </form>
+                    <button
+                        className="btn btn-primary mt-4"
+                        onClick={handleClear}
+                    >
+                        Clear
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
