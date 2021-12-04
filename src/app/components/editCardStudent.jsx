@@ -62,8 +62,8 @@ const EditCardStudent = () => {
     return (
         <div className="container mt-5">
             <div className="row">
-                <div className="col-md-6 offset-md-3">
-                    <h3>Edit card student</h3>
+                <div className="col-md-6 offset-md-3 shadow p-4">
+                    <h3 className="mb-4">Edit card student</h3>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             label="Name"
@@ -97,19 +97,25 @@ const EditCardStudent = () => {
                             onChange={handleChange}
                             error={errors.portfolio}
                         />
-                        <button
-                            className="btn btn-primary mt-4"
-                            disabled={!isValid}
+                        <div
+                            className="btn-group mb-4 w-100 mx-auto"
+                            role="group"
+                            aria-label="Basic example"
                         >
-                            Save
-                        </button>
+                            <button
+                                className="btn btn-primary"
+                                disabled={!isValid}
+                            >
+                                Save
+                            </button>
+                            <button
+                                className="btn btn-secondary"
+                                onClick={handleClear}
+                            >
+                                Clear
+                            </button>
+                        </div>
                     </form>
-                    <button
-                        className="btn btn-primary mt-4"
-                        onClick={handleClear}
-                    >
-                        Clear
-                    </button>
                 </div>
             </div>
         </div>

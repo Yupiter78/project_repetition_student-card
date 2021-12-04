@@ -60,10 +60,15 @@ const CardStudent = () => {
                     </div>
                 </div>
             ) : (
-                <div>
-                    <h1>Create card student</h1>
+                <div
+                    className="card mt-5 position-absolute start-50 translate-middle-x shadow p-4"
+                    style={{ width: "28rem" }}
+                >
+                    <div className="fs-5 fw-bold text-center font-monospace">
+                        Create card student
+                    </div>
                     <button
-                        className="btn btn-primary mt-4"
+                        className="btn btn-primary mt-4 w-100"
                         onClick={handleCreate}
                     >
                         Create
