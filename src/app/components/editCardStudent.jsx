@@ -5,14 +5,22 @@ import { useHistory } from "react-router-dom";
 
 const EditCardStudent = () => {
     const history = useHistory();
-    const saveData = JSON.parse(localStorage.getItem("student"));
     const initialState = {
         name: "",
         surname: "",
         yearOfBirth: "",
         portfolio: ""
     };
-    const [data, setData] = useState(saveData || initialState);
+    const [data, setData] = useState(initialState);
+    const [isCreateUser, setIsCreateUser] = useState(false);
+
+    useEffect(() => {
+        const saveData = JSON.parse(localStorage.getItem("student"));
+        if (saveData) {
+            setData(saveData);
+            setIsCreateUser(true);
+        }
+    }, []);
     const [errors, setErrors] = useState({});
     const handleChange = ({ target }) => {
         console.log(target.id);
@@ -63,7 +71,11 @@ const EditCardStudent = () => {
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-6 offset-md-3 shadow p-4">
-                    <h3 className="mb-4">Edit card student</h3>
+                    <h3 className="mb-4">
+                        {isCreateUser
+                            ? "Edit card student"
+                            : "Create card student"}
+                    </h3>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             label="Name"
@@ -111,6 +123,7 @@ const EditCardStudent = () => {
                             <button
                                 className="btn btn-secondary"
                                 onClick={handleClear}
+                                type="button"
                             >
                                 Clear
                             </button>

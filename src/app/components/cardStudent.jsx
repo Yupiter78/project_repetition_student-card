@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { getAge } from "../utils/utils";
 
 const CardStudent = () => {
     const history = useHistory();
     console.log(history);
-    const data = JSON.parse(localStorage.getItem("student"));
+    const [data, setData] = useState({});
+    const storageData = JSON.parse(localStorage.getItem("student"));
+    useEffect(() => {
+        if (storageData) {
+            setData(storageData);
+        }
+    }, []);
+
+    const isCreateUser = !!Object.keys(data).length;
     const handleEdit = () => {
         history.push("/edit");
         console.log(data);
@@ -13,53 +22,12 @@ const CardStudent = () => {
     const handleCreate = () => {
         history.push("/edit");
     };
-
-    const getAge = ({ yearOfBirth }) => {
-        const age = (new Date().getFullYear() - yearOfBirth).toString();
-        // const exceptions = ["2", "3", "4"];
-        // function getWord(age) {
-        //     if (age.slice(-1) === "1" && age.substr(-2, 2) !== "11") {
-        //         return "год";
-        //     } else if (
-        //         exceptions.includes(age.slice(-1)) &&
-        //         age.substr(-2, 1) !== "1"
-        //     ) {
-        //         return "года";
-        //     } else {
-        //         return "лет";
-        //     }
-        // }
-        function getWord(age) {
-            const cases = [2, 0, 1, 1, 1, 2];
-            const options = ["год", "года", "лет"];
-
-            console.log("age.substr(-2):", age.substr(-2));
-
-            return options[
-                age.substr(-2) > 4 && age.substr(-2) < 20
-                    ? 2
-                    : cases[age.substr(-1) < 5 ? age.substr(-1) : 5]
-            ];
-        }
-        return `${age} ${getWord(age)}`;
-    };
-
-    // const calculateAge = (year) => {
-    //     return new Date().getFullYear() - Number(year);
-    // };
-    //
-    // function plural(number, titles) {
-    //     const cases = [2, 0, 1, 1, 1, 2];
-    //     return titles[
-    //         number % 100 > 4 && number % 100 < 20
-    //             ? 2
-    //             : cases[number % 10 < 5 ? number % 10 : 5]
-    //         ];
-    // }
+    console.log("data:", data);
+    console.log("isCreateUser:", isCreateUser);
 
     return (
         <>
-            {data ? (
+            {isCreateUser ? (
                 <div
                     className="card mt-5 position-absolute start-50 translate-middle-x shadow"
                     style={{ width: "28rem" }}
