@@ -1,5 +1,5 @@
-export const getAge = ({ yearOfBirth }) => {
-    const age = (new Date().getFullYear() - yearOfBirth).toString();
+export const getAge = ({ year }) => {
+    const age = (new Date().getFullYear() - year).toString();
     // const exceptions = ["2", "3", "4"];
     // function getWord(age) {
     //     if (age.slice(-1) === "1" && age.substr(-2, 2) !== "11") {
@@ -13,6 +13,7 @@ export const getAge = ({ yearOfBirth }) => {
     //         return "лет";
     //     }
     // }
+    console.log("age:", age);
     function getWord(age) {
         const cases = [2, 0, 1, 1, 1, 2];
         const options = ["год", "года", "лет"];

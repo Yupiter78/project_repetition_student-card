@@ -8,7 +8,7 @@ const EditCardStudent = () => {
     const initialState = {
         name: "",
         surname: "",
-        yearOfBirth: "",
+        year: "",
         portfolio: ""
     };
     const [data, setData] = useState(initialState);
@@ -33,7 +33,7 @@ const EditCardStudent = () => {
     const validatorConfig = {
         name: { isRequired: { message: "Email isRequired" } },
         surname: { isRequired: { message: "Surname isRequired" } },
-        yearOfBirth: {
+        year: {
             isRequired: { message: "Year of birth isRequired" },
             isNumber: { message: "Enter only number" },
             isValidDate: { message: "Enter the correct date" }
@@ -67,6 +67,10 @@ const EditCardStudent = () => {
         localStorage.clear();
         history.push("/");
     };
+
+    const handleBack = () => {
+        history.push("/");
+    };
     return (
         <div className="container mt-5">
             <div className="row">
@@ -96,10 +100,10 @@ const EditCardStudent = () => {
                         <TextField
                             label="Year of birth"
                             type="text"
-                            name="yearOfBirth"
-                            value={data.yearOfBirth}
+                            name="year"
+                            value={data.year}
                             onChange={handleChange}
-                            error={errors.yearOfBirth}
+                            error={errors.year}
                         />
                         <TextField
                             label="Portfolio"
@@ -122,6 +126,13 @@ const EditCardStudent = () => {
                             </button>
                             <button
                                 className="btn btn-secondary"
+                                onClick={handleBack}
+                                type="button"
+                            >
+                                Back
+                            </button>
+                            <button
+                                className="btn btn-danger"
                                 onClick={handleClear}
                                 type="button"
                             >
