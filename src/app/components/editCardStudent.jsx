@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TextField from "./textField";
 import { validator } from "../utils/validator";
 import { useHistory } from "react-router-dom";
+import { FIELDS } from "../utils/constants";
 
 const EditCardStudent = () => {
     const history = useHistory();
@@ -81,38 +82,17 @@ const EditCardStudent = () => {
                             : "Create card student"}
                     </h3>
                     <form onSubmit={handleSubmit}>
-                        <TextField
-                            label="Name"
-                            type="text"
-                            name="name"
-                            value={data.name}
-                            onChange={handleChange}
-                            error={errors.name}
-                        />
-                        <TextField
-                            label="Surname"
-                            type="text"
-                            name="surname"
-                            value={data.surname}
-                            onChange={handleChange}
-                            error={errors.surname}
-                        />
-                        <TextField
-                            label="Year of birth"
-                            type="text"
-                            name="year"
-                            value={data.year}
-                            onChange={handleChange}
-                            error={errors.year}
-                        />
-                        <TextField
-                            label="Portfolio"
-                            type="text"
-                            name="portfolio"
-                            value={data.portfolio}
-                            onChange={handleChange}
-                            error={errors.portfolio}
-                        />
+                        {Object.keys(data).map((key) => (
+                            <TextField
+                                key={key}
+                                label={FIELDS[key].label}
+                                type={FIELDS[key].type}
+                                name={key}
+                                value={data[key]}
+                                onChange={handleChange}
+                                error={errors[key]}
+                            />
+                        ))}
                         <div
                             className="btn-group mb-4 w-100 mx-auto"
                             role="group"
@@ -121,6 +101,7 @@ const EditCardStudent = () => {
                             <button
                                 className="btn btn-primary"
                                 disabled={!isValid}
+                                type="submit"
                             >
                                 Save
                             </button>
